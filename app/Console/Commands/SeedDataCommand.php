@@ -52,7 +52,7 @@ class SeedDataCommand extends Command
 
     public function __destruct()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 
     private function foreignKeyChecks() {
