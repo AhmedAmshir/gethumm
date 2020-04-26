@@ -14,7 +14,7 @@ pipeline {
         }
         stage("Unit test") {
             steps {
-                sh "./vendor/bin/phpunit --filter=HummTest"
+                sh "./vendor/bin/phpunit"
             }
         }
     }
