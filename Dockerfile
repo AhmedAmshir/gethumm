@@ -5,4 +5,5 @@ RUN apt-get update && apt-get install -y libpng-dev libjpeg62-turbo-dev libfreet
 RUN docker-php-ext-install gd mbstring bcmath pdo pdo_mysql
 WORKDIR /usr/local/etc/php/conf.d/
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer
+
 WORKDIR /var/www/html/
