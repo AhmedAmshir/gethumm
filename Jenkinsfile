@@ -15,7 +15,10 @@ pipeline {
         stage("Unit test") {
             steps {
                 script {
-                    docker.image('mysql:5.7').withRun('-e "DB_HOST=gethumm_mysql" -e "MYSQL_DATABASE=gethumm_testing" -e "DB_USERNAME=root" -e "DB_PASSWORD=root" -p 3305:3305"') {
+                    docker.image('mysql:5.7').withRun('-e "MYSQL_ROOT_PASSWORD=root"') { c ->
+                        docker.image('mysql:5.7').inside("--link ${c.id}:db") {
+                            sh 'while ! mysqladmin ping -hdb --silent; do sleep 1; done'
+                        }
                         sh "./vendor/bin/phpunit --filter=HummTest"
                     }
                 }
