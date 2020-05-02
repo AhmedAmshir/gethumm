@@ -10,6 +10,8 @@ pipeline {
                 sh 'composer --version'
                 sh 'cp .env.example .env'
                 sh 'php artisan key:generate'
+                sh 'php artisan migrate'
+                sh 'php artisan data:seed'
             }
         }
         stage("Unit test") {
