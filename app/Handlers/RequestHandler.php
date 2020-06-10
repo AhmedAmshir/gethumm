@@ -4,7 +4,7 @@ namespace App\Handlers;
 
 trait RequestHandler {
 
-    public function extractRequestData($request) {
+    public function extractRequestData($request) : array {
 		
 		if ($request->isMethod('post')) {
 			$RequestArray = $request->all();

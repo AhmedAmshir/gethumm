@@ -17,7 +17,17 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('api_key')->group(function () {
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/elasticsearch/{age}/{name}', 'HummController@testElasticsearch')->name('home');
+
+Route::get('/find/elasticsearch/{age}', 'HummController@getElasticsearch')->name('home');
+
+Route::get('/ingredients', ['as' => 'list_ingredients', 'uses' => 'HummController@listIngredients']);
+
+Route::prefix('api')->middleware('api_key')->group(function () {
     Route::post('/create-ingredient', ['as' => 'create_ingredient', 'uses' => 'HummController@createIngredient']);
 
     Route::get('/ingredients', ['as' => 'list_ingredients', 'uses' => 'HummController@listIngredients']);
